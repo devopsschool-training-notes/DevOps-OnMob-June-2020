@@ -1,0 +1,303 @@
+https://www.devopsschool.com/courses/daywise/devops-git-sonarqube-gradle-ansible-docker-jenkins-on-aws-5days.html
+Gradle - Sonar ---> Half day  === Accomdate - ELK
+Jenkins - Half Day  === Accomdate - Promethus
+==============================================================
+==============================================================
+
+Start 12: PM NOON 
+End 7 PM 
+=========================
+Lunch Hour - 2 -3 PM
+Coffee/Tea/Restroom - 5:00 pm
+===========================
+Demo and Lab - AWS 
+===========================
+Rajesh Kumar
+=================================================================
+=================================================================
+1 2 3 4 5 6 7 8 9 0 
+==============================================
++91 8105843520
+==============================================
+
+What is DevOps?
+=========================
+Step 1 - What is your org objective?
+Step 2 - What is the challneges you are having?
+Step 3 - What are the pain area?
+Step 4 - What is your waste?
+----------How to address these?--------------
+- Change in culture and mindset of Employees and Org.
+- Bring great Automation
+- Enable Sharing
+- Enable Monitoring
+with 
+	Only Useful process
+	Best Practices
+	Top Tools
+=======================DEVOPS JOURNEY===============================>>>>>>>>>>>>
+How to have Dev - QA - PROD - SYNC === SOLVE with Container.
+How can i become a DEV + QA + OPS? --> Microservcies
+Immediate release - 10 mins --> Microservcies
+======================================================================
+
+
+Why We need DevOps?
+=========================
+
+
+How to do The DevOps?
+=========================
+
+
+Evolution in Software Engineering
+=======================================
+Onmobile or any
+----------------------------------------
+Ultimate Goal - Develop a Software and Run a Software
+=======================================
+	- Immediate release
+	- Cost reduction in Soft Dev Cost & Running cost
+	- Improving a Quality a Software
+=======================================
+Consumptions -> OWNING ---> Sharing with Distributed APP.
+
+Platform -> Physical Machine --> Virtual Machine -> Container
+
+Model -> Waterfall -> Agile ---> DevOps --> DevSecOps
+			    (SRE) 
+Artchitect -> Monolitic --> SOA(Internet) --> Microservcies
+==========================================
+
+
+Automation - 
+https://www.devopsschool.com/path/
+
+=====================================
+Git		- Source Code mgmtm
+Gradle		- Build mgmt
+Sonarqube	- Code Quality mgmt
+Ansible 	- Config mgmt
+Jenkins		- CI mgmt
+Docker		- COntainer mgmt
+ELK		- Log mgmt
+Promethus	- infra moni mgmt.
+=================================================================
+
+What is Git?
+ - Source Code mgmt tool.
+ - FREEDOM
+	- Distributed
+ - Open Souce
+ - Written by LINUS?
+ - Free
+ - Compat All OS.
+
+Why we need git?
+	- Versioing of file which is text based.NON BINARY
+	- Binary - GIT LFS.
+
+	- Who
+	- Why
+	- Where
+	- What 
+	- When
+
+How Git works!!! and  Distributed VS Server/Client????
+
+How to install git?
+===========================
+Windows - exe from gitscm.com
+		- git bash - its linux enabled shell in windows.
+		- git cmd
+Linux - 
+	yum install git
+	apt-get install git.
+Mac - dmg from gitscm.com
+
+
+
+Other tools - 
+CVS -> SVN -> GIT (Open Source)
+Perforce + ClearCase + mercury + TFS + VSS
+
+
+Basic Workflow in Git
+==================================
+Step 1 - Create a repo
+$ git init
+
+Step 2 - Add a file with code which you want to version using editor
+- DONE
+
+Step 3 - Add a file to git[FROM WORKING TO STAGING AREA]
+$ git add filename
+
+ONE TIME 
+=======================
+git config user.name "Rajesh Kumar"
+git config user.email "devops@Rajeshkumar.xyz"
+git config --list
+
+Step 4 - Commit a file to git [STAGING AREA to repo]
+$ git commit -m"adding first commit"
+
+Step 5 - View a commiited file with 
+	- Who
+	- Why
+	- Where
+	- What 
+	- When
+$ git log 
+$ git show commit-id
+
+5275a29702186327f97a1d78e12f6232f9918a5f
+- commit-id
+- Checksum by SHA1.
+- Represent your Code location in repository.
+- It is a OBJECT 
+- 40 Char - Universaly Unique.
+========================================================
+- How to add multiple files?	 DONE
+- How to add dir		DONE
+- How to modify a file		DONE
+
+
+- How to delete a file		DONE
+- How to go back in history	DONE
+	- revert
+- How to recover a delted a file.
+- How to tag?
+
+ 509  git init
+  510  start .
+  511  ls
+  512  ls -a
+  513  clear
+  514  ls
+  515  touch file3.txt
+  516  ls
+  517  git add file1.java
+  518  git config user.name "Rajesh Kumar"
+  519  git config user.email "devops@Rajeshkumar.xyz"
+  520  git config --list
+  521  clear
+  522  git commit -m"adding first commit"
+  523  clear
+  524  git log
+  525  git show 5275a29702186327f97a1d78e12f6232f9918a5f
+  526  cleae
+  527  clear
+  528  git log
+  529  clear
+  530  ls
+  531  git status
+  532  git add .
+  533  git status
+  534  clear
+  535  ls
+  536  git commit -m"adding 2nd"
+  537  git status
+  538  clear
+  539  ls
+  540  git log
+  541  clear
+  542  ls
+  543  mkdir src
+  544  ls
+  545  git status
+  546  touch src/pro1.txt
+  547  git status
+  548  git add .
+  549  git status
+  550  touch ramukaka.txt
+  551  git status
+  552  git add .
+  553  git status
+  554  git commit -m"selective" src/pro1.txt
+  555  git status
+  556  git commit -m"aall
+"
+  557  clear
+  558  git status
+  559  git logs
+  560  git log
+  561  clear
+  562  git log -n 2
+  563  clear
+  564  ls
+  565  vi file2.java
+  566  git status
+  567  git add .
+  568  git status
+  569  git commit -m"dd"
+  570  giclear
+  571  clear
+  572  ls
+  573  touch todelete.txt;git add .;git commit -m"to delete"
+  574  git log --oneline
+  575  ls
+  576  git status
+  577  git rm todelete.txt
+  578  git status
+  579  git commit -m"ading"
+  580  git log --oneline
+  581  ls
+  582  git checkout bcbe593
+  583  ls
+  584  git checkout master
+  585  ls
+  586  clear
+  587  ls
+  588  vi file3.txt
+  589  git add .;git commit -m"good code"
+  590  git log --oneline
+  591  vi file3.txt
+  592  git add .;git commit -m"bad code"
+  593  clear
+  594  git log --oneline
+  595  git revert 4f6aca6
+  596  git log --oneline
+  597  git diff df61375 4f6aca6
+  598  git diff df61375 4ba78db
+  599  clear
+  600  history
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
