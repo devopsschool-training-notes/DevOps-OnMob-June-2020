@@ -262,11 +262,42 @@ $ git show commit-id
   598  git diff df61375 4ba78db
   599  clear
   600  history
+==========================================
+==========================================
+==========================================
+
+- github
+- gitlab
+- bitbuket
+- gerrit
+
+ONE GUY
+=--------------
+ 601  git push https://github.com/devopsschool-demo-temporary/onmob1 master
+  602  ls
+  603  git pull https://github.com/devopsschool-demo-temporary/onmob1 master
+  604  ls
+  605  clear
+  606  history
 
 
+Diff Guy
+-----------------------
 
-
-
+ 502  git clone https://github.com/devopsschool-demo-temporary/onmob1
+  503  clear
+  504  start .
+  505  cd onmob1/
+  506  git log --oneline
+  507  clear
+  508  touch diffguy.txt;git add .;git commit -m"ddguy"
+  509  git config user.name "Rajesh Kumar"
+  510  git config user.email "devops@Rajeshkumar.xyz"
+  511  clear
+  512  touch diffguy.txt;git add .;git commit -m"ddguy"
+  513  git push origin master
+  514  clear
+  515  history
 
 
 
