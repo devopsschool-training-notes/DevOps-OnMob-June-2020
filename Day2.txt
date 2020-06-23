@@ -1,0 +1,142 @@
+What is SonarQube?
+-------------------
+	Quality mgmt tool.
+	Release
+		Community - Free and OpenSource. [ FOCUS ]
+		Enterprise - Paid
+		Developer - 
+		Cloud
+	by SonarSource
+	Written in JAVA.
+		PLATFORM IND
+		Need JRE to run.
+	Backend - Supports All RDBMS
+	For 27 programming languages
+	
+Quality
+- Code Quality
+- Test Quality [OUT OF SCOPE]
+
+
+Why Code Quality?
+--------------------------
+70% of BUGS is FOUND Coz of Bad Code Quality
+
+SonarQube Advance - 7 Axis of Code Quality.
+---------------------------------------------
+Coding standards—respect coding standards and follow best practices
+
+Potential bugs—eliminate code violations to prevent vulnerabilities﻿
+
+Documentation and comments—provide documentation especially for the Public API, the source code
+
+Duplicated code—isolates and refines duplications, Don't Repeat Yourself
+
+Complexity—equalizes disproportionate distributed complexity among components; eliminates complexity if possible
+
+Test coverage—writes unit tests, especially for complex parts of the software
+
+Design and architecture—minimize dependencies
+---------------------------------------------
+
+
+Method of Code Quality
+-----------------
+	Peer Code Review
+	Static Code Review [ FOCUS ]
+	- is a process in which it inclues programs to review a programs and give you a reports.
+
+
+What are the tools/programs? for Static Code Review???
+-----------------------------------
+JAVA - 17 Tools 
+	===== 
+	Each tools has diff diff rules.
+		Each rule is doing one thing.
+===========================================
+What do you need it?
+	A place for all tools - rules
+	A place for all reports
+	A place for visualization of code quality over a period of time
+	A place where can we fnd out.		
+			WHO
+			WhAt
+			how
+			Where?
+	----------------------------
+	SonarQube.
+
+Architecute of SonarQube?
+============================
+SonarQube Server
+	DB				DONE
+		Any RDB
+	SonarQube			DONE	
+		Rules
+		Profiles
+		Gateway
+	Searching & Index		DONE
+		elasticsearch
+
+Dev Laptop
+	Scanner
+	Source Code
+		- Sonar prop [DYNAMICALLY by Maven-Gradle]
+
+==============================
+How to install it
+	- JAVA
+		sudo yum install java-11-openjdk-devel
+		
+	- download
+		sudo yum install wget -y
+		sudo yum install unzip -y
+		sudo yum install tree -y
+		wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.3.1.34397.zip
+	- Extract
+[ec2-user@ip-172-31-16-96 sonarqube]$ tree -L 1
+.
+├── bin		# START and STOP SonarQube
+├── conf	# Config file of SonarQube
+├── COPYING
+├── data	# H2 of SonarQube
+├── elasticsearch
+├── extensions	# Plugins of SonarQube
+├── lib		
+├── logs
+├── temp
+└── web
+
+	- Run
+	- USE
+
+13.233.8.47
+35.154.31.158
+
+http://13.233.8.47:9000/about
+admin
+admin
+=================================================
+
+/home/ec2-user/scanner/bin/sonar-scanner
+============================================================
+Assignment - 
+Login to 
+35.154.31.158
+User Name - ec2-user
+Key - PUTTY
+https://www.devopsschool.com/notes/docker/2019/
+File name - rajesh-mumbai.ppk
+
+Step 1 - Create a dir with yourname.
+Step 2 - Go into your dir
+Step 3 - Clone Code from https://github.com/devopsschool-demo-labs-projects/java-sonarqube-helloworld-src
+Step 4 - Download Scanner from website.
+Step 5 - Modify Project name and key
+Step 6 - Run Scanner of Code
+Step 7 - Visualize - Create profile - Create gate and check it out.
+
+
+
+
+
