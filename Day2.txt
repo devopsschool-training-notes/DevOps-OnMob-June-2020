@@ -136,7 +136,171 @@ Step 5 - Modify Project name and key
 Step 6 - Run Scanner of Code
 Step 7 - Visualize - Create profile - Create gate and check it out.
 
+===============================================================================
+===============================================================================
+===============================================================================
+Makefile -> ANT -> NANT - mSBUILD - Maven - 	pybuider
+c,c++	    java   dotnet dotnet	java	python
+	
+
+What is Gradle?
+=====================
+ 	- Build mgmt tool.
+	- Free
+	- Open Source
+	- Based on Plugins.
+	- In Build Dependency mgmt tool.
+	- DSL of GROOVY.
+	- https://gradle.org/
+	- Support Multiple Languages.
+
+Why Gradle?
+==================================
+SCAN - Compile - UT - Package - Archive
+======================================
+		10 times in day
+
+========================================================
+Gradle Support 
+		Procedural Lang	== MAVEN - Maven
+		Declareative Lang == ANT - ivy
+
+=========================================================
+How gradle Works!!!
+https://www.devopsschool.com/blog/gradle-tasks-are-exaplained-in-10-mins/
+
+Gradle
+	Plugins
+	
+		Core Plugins
+		Script plugins - Declareative approach
+		Binary Plugins  - procedural approach	
+		https://docs.gradle.org/current/userguide/plugin_reference.html
+			— Core Binary Plugins such as (e.g. JavaPlugin)
+			— External Binary Plugins using community repos
+			https://plugins.gradle.org/
+			— custom Plugins
+		
+==========================================================================
+Plugins BRINGS
+		TASKS
+			COPY 
+			DELETE
+			COMPILE
+			TEST
+			PACKAGE
+
+External TASK -
+https://docs.gradle.org/current/userguide/plugin_reference.html
+
+Custom TASK  
+https://plugins.gradle.org/
+
+Built it
+https://docs.gradle.org/current/dsl/index.html
+
+==========================================================================
+How to get started?
+==================================
+build.gradle - Main file.
+https://www.devopsschool.com/blog/gradle-tasks-are-exaplained-in-10-mins/
+https://www.devopsschool.com/blog/what-is-gradle-dag-directed-acyclic-graph/
+
+setting.gradle
+https://www.devopsschool.com/blog/what-is-settings-gradle-in-gradle/
+- Project - Setting - Multi
+
+properties.gradle
+- Would contain property
+
+======================
+build.gradle
+=======================
+Skeleton
+
+Project
+	task1
+		Has a Lifecycle
+			 initialization - Init a project with setting.
+		         configuration, and  - Package all config and Properties and Dep.
+			 execution -- Actions & Methods
+		Has Properties
+		Has Actions & Methods
+		Has Dependencies
+		Script Block
+	task2
+		Has a Lifecycle
+		Has Properties
+		Has Actions & Methods
+		Has Dependencies
+		Script Block
+	task3
+		Has a Lifecycle
+		Has Properties
+		Has Actions & Methods
+		Has Dependencies
+		Script Block
+====================================================
+How to install Gradle?
+================================================
+	- JDK
+	- Download
+	- Extract 
+	- Set path
+	- Use it..
+=============================
+Approach - 1 = Declareative Lang == ANT - ivy
+
+
+println 'This is executed during the configuration phase.'
+
+task configured {
+    println 'This is also executed during the configuration phase.'
+}
+
+task test {
+    println 'This is executed during the execution phase.'
+    doLast {
+    	println "This is executed during the execution phase with doLast "
+     }
+    doFirst {
+    	println "This is executed during the execution phase with doFirst "
+    }
+}
+
+task mytask {
+    println 'This is executed during the execution phase.'
+    description "This is task 6"
+    dependsOn copyDocs
+    doLast {
+    	println "This is executed during the execution phase with doLast "
+     }
+    doFirst {
+    	println "This is executed during the execution phase with doFirst "
+    }
+}
 
 
 
+task copyDocs(type: Copy) {
+    from 'src'
+    into 'dest'
+}
+
+
+Approach - 2 = Procedural Lang	== MAVEN - Maven
+
+		
+=============================================================
+=============================================================
+Step 1 - Install JAVA and Set JAVA_HOME
+Step 2 - Download and Set Gradle
+Step 3 - Create a JAVA project.
+Step 4 - RUn following TASKS
+	gradle compileJava
+	gradle build	
+	gradle test 
+	gradle assemble
+	gradle clean
+https://www.devopsschool.com/blog/gradle-tasks-are-exaplained-in-10-mins/
 
