@@ -1,0 +1,304 @@
+What is Ansible?
+==========================================
+- Config mgmt tool
+- Deployment mgmt tool
+- From Redhat
+- Release
+	Ansible - CMD - Free - Open Source
+	Ansible Tower - CMD - GUI - FREE Till 10 Nodes
+- Written in Python
+- Powered with 3000+ Modules and 5000+ roles.
+- Agent Less - We do agent - paramiko
+- PUSH Defult
+- Pull Possible - using ansible-pull
+
+What is Config mgmt?
+-----------------------
+	SERVER(S) Config mgmt
+
+What is there in SERVER so we do Config mgmt.
+-----Resources------------------------------------------
+				Property 	Action
+- files						A D M
+- dirctory					A D  M
+- package					I R U
+- services					S S E D 
+- policy					A E D
+- user						A  E D
+- group
+- Scrpt
+=============================================================
+
+
+Why Ansible????
+  	parallel server config mgmt
+	parallel deployment in the servers
+	SHELL - PS  - We need platform indepent.
+
+	JAVA - PYTHON - We need a tool for easy to learn/test/debug/share/extend
+
+	Ansible is DSL for Config mgmt for parallel server change mgmt
+
+	Ansible is IDEOMPOTENT [HOME WORK]
+
+	Cost - Speed - Consistent change mgmt.....
+==================================================================
+Ansible Architecutre
+======================================================
+
+Ansible Control Server  -----------> Ansible Remote Server
+LINUX ONLY				ANY
+64 BIT ONLY				ANY
+         -----------------WINDOWS-----> 	HTTP
+	-----------------LINUX----->		SSH
+	
+	-----------------WINDOWS----->		WINRM ENABLED 
+	-----------------LINUX----->		SSH  ENABLED 
+PYTHON 2.7+
+		-----------------WINDOWS----->	DOTNET 4.X + PS 3.0 				
+		-----------------LINUX----->	PYTHON 2.7+
+
+====================================================================
+Components of Ansible Control Server?
+------------------------------------
+Ansible
+	Plugins
+	Modules
+	Config
+	multiple executables
+Human 
+	Inventory
+	Playbook
+======================================
+What is Plugins?
+	- Each Feature in Ansible coz plugins.
+			Built-in
+			External
+What is Modules?
+	DOING ONE TASK by Accepting some param.
+	- 3000+
+
+	Copy - What file?? - Where u want to copy?
+	Delete - What file you want to delete?
+	Service - What service - wat you want??
+	package - what packer - install - remove
+	====================
+	3000 TASKS
+		ACCEPT Param - you need to code in Python.
+
+
+What is Config?
+	 a file which can be used to modify a DEFAULT behaviour of ANSIBLE.
+
+What is Inventory?
+	List of IP Address of ARS
+
+What is Playbook?
+	Its program which you write.
+	It has multiple task.
+		Each task is nothing but a moulde with param.
+=====================================
+What is the role you are going to play?
+
+Developers - Write a Ansbile Program -> Playbook and Roles
+
+Ops - He would run verified Ansbile Program and Manage infra - Manage Inventory...
+
+===============================
+ACS 
+15.206.172.13
+https://www.devopsschool.com/blog/how-to-install-ansible-in-centos-7-rhel-7/
+
+$ sudo yum install wget -y
+$ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ sudo rpm -i epel-release-latest-7.noarch.rpm
+$ sudo yum install ansible -y
+
+
+
+[root@ip-172-31-20-254 ec2-user]# ls /bin/ansible*
+/bin/ansible             /bin/ansible-console-2.7  /bin/ansible-inventory     /bin/ansible-test
+/bin/ansible-2           /bin/ansible-doc          /bin/ansible-playbook      /bin/ansible-vault
+/bin/ansible-2.7         /bin/ansible-doc-2        /bin/ansible-playbook-2    /bin/ansible-vault-2
+/bin/ansible-config      /bin/ansible-doc-2.7      /bin/ansible-playbook-2.7  /bin/ansible-vault-2.7
+/bin/ansible-connection  /bin/ansible-galaxy       /bin/ansible-pull
+/bin/ansible-console     /bin/ansible-galaxy-2     /bin/ansible-pull-2
+/bin/ansible-console-2   /bin/ansible-galaxy-2.7   /bin/ansible-pull-2.7
+
+
+[root@ip-172-31-20-254 plugins]# pwd
+/usr/lib/python2.7/site-packages/ansible/plugins
+[root@ip-172-31-20-254 plugins]# ls -1
+action
+become
+cache
+callback
+cliconf
+connection
+doc_fragments
+filter
+httpapi
+__init__.py
+__init__.pyc
+__init__.pyo
+inventory
+loader.py
+loader.pyc
+loader.pyo
+lookup
+netconf
+shell
+strategy
+terminal
+test
+vars
+
+====================================================
+How to become a JAVA Developer?
+======================================
+JDk -> IDE -> .JAVA		-> .CLASS ---> .JAR ---> WAR =====> OPS---RUN IT 
+		VARIABLE
+		OPERATORS
+		CONDITIONING
+		LOOPING
+		FUNCTIONS
+====================================================
+How to become a ANSIBLE Developer?
+======================================
+Ansible -> IDE -> YAML(PLAYBOOK) --> ROLES ===> OPS --> ENV....
+		VARIABLE
+		OPERATORS
+		CONDITIONING
+		LOOPING
+		FUNCTIONS
+
+EVO OF PROG
+-------------------
+Compile -> Interpreter -> DSL 
+				Declare
+					XML -> YAML/JSON
+==============================================================================
+Ansible ADHOC Commands.
+==========================================
+Ansible
+		optional arguments	---- Aurguments
+		Connection Options	---- Authentication
+		Privilege Escalation Options -- Authorization
+=======================================================
+- Get a Project first....	Set a Webserver in 100 machine
+- Convert to PSucode.
+	- Install webserver (httpd)			yum
+	- Copy Package (index.html) to /var/www/html	copy
+	- start a service				service
+
+ansible localhost -m yum -a "name=httpd state=present"
+ansible localhost -m copy -a "dest=/var/www/html src=index.html"
+ansible localhost -m service -a"name=httpd state=started"
+
+
+13.126.16.201
+13.235.19.248
+
+What is inventory
+==========================
+List of IP Address of ARS
+	- Can be passed on COMMAND LINE
+	- Can be a file
+		- GROUP
+			
+		- GROUP OF GROUP
+		- HOST BEHAVOIURAL PARAM.
+		- VARS
+	- Can be script
+
+	- INI file format
+=====================================================================
+Lets know SSH behaviours of 
+	Authentication
+			USER NAME - PASS		-u 	-k
+			USER NAME - KEY			-u	--key-file
+	Authorization
+			SUDO without password		-b
+			SUDO with password		-b -K
+			SUDO with DIFF USER ID AND PASSWORD	-b	--become-user -K
+			
+
+ansible localhost -m yum -a "name=httpd state=present"
+ansible localhost -m copy -a "dest=/var/www/html src=index.html"
+ansible localhost -m service -a"name=httpd state=started"
+
+
+ansible 13.126.16.201 -m yum -a "name=httpd state=present" 
+
+
+ansible all -i 13.126.16.201,13.235.19.248, -m yum -a "name=httpd state=present" -u=ec2-user --key-file=remote.pem -b 
+ansible all -i 13.126.16.201,13.235.19.248, -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible all -i 13.126.16.201,13.235.19.248, -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+
+
+ansible all -i 13.126.16.201,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248,13.235.19.248, -m yum -a "name=httpd state=present" -u=ec2-user --key-file=remote.pem -b 
+
+
+
+
+vi inventory
+13.126.16.201
+13.235.19.248
+
+ansible all -i inventory -m yum -a "name=httpd state=present" -u=ec2-user --key-file=remote.pem -b 
+ansible all -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible all -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+
+
+
+vi inventory
+
+[web]
+13.126.16.201
+13.235.19.248
+
+[db]
+13.235.19.23
+13.235.19.25
+13.235.19.26
+13.235.19.27
+13.235.19.28
+
+
+ansible web -i inventory -m yum -a "name=httpd state=present" -u=ec2-user --key-file=remote.pem -b 
+ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================
+===================================================
+ansible_ssh_common_args: '-o ProxyCommand="ssh -o StrictHostKeyChecking=no -W %h:%p -q password@<jumpserverip>"'
+
+You can set a ProxyCommand in the ansible_ssh_common_args inventory variable. Any arguments specified in this variable are added to the sftp/scp/ssh command line when connecting to the relevant host(s). Consider the following inventory group:
+
+[gatewayed]
+foo ansible_host=192.0.2.1
+bar ansible_host=192.0.2.2
+You can create group_vars/gatewayed.yml with the following contents:
+
+ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q user@gateway.example.com"'
+Ansible will append these arguments to the command line when trying to connect to any hosts in the group gatewayed. (These arguments are used in addition to any ssh_args from ansible.cfg, so you do not need to repeat global ControlPersist settings in ansible_ssh_common_args.)
+
+===================================================
+===================================================
+
+
+
+
