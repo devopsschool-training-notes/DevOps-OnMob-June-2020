@@ -266,9 +266,416 @@ vi inventory
 13.235.19.28
 
 
+
 ansible web -i inventory -m yum -a "name=httpd state=present" -u=ec2-user --key-file=remote.pem -b 
 ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
 ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+
+================
+
+
+[web]
+13.126.16.201
+13.235.19.248
+
+[db]
+13.235.19.23
+13.235.19.25
+13.235.19.26
+13.235.19.27
+13.235.19.28
+
+
+
+[gog:children]
+web
+db
+
+
+ansible gog -i inventory -m yum -a "name=httpd state=present" -u=ec2-user --key-file=remote.pem -b 
+ansible web,db -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+
+
+- - - 
+
+
+some machine has usr id n pass
+some machine has usr id n key
+some machine has user pass with 4 diff behaviour auth
+some machine has ssh on 23
+some machine has python at diff loca
+some machine has bash at diff location
+ansible_connection 
+	ssh
+	smart
+	paramiko
+	docker
+	localhost
+	winrm
+
+[web]
+13.126.16.201 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+13.235.19.248 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+
+[app]
+13.126.16.201
+13.235.19.248
+
+
+[app:vars]
+ansible_user=ec2-user 
+ansible_ssh_private_key_file=remote.pem 
+ansible_become=true
+
+[db]
+13.235.19.23 ansible_connection=winrm ansible_port=23
+13.235.19.25 ansible_connection=ssh
+13.235.19.26 ansible_port=28
+13.235.19.27 ansible_user=ec2-user ansible_password=dsfs ansible_become=yes
+13.235.19.28 ansible_python_interpreter=/sss/s/python
+
+	
+
+https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters
+
+
+
+ansible web -i inventory -m yum -a "name=httpd state=present" 
+ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a "name=httpd state=present" 
+ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a "name=httpd state=present" 
+ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a "name=httpd state=present" 
+ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a "name=httpd state=present" 
+ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a "name=httpd state=present" 
+ansible web -i inventory -m copy -a "dest=/var/www/html src=index.html" -u=ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u=ec2-user --key-file=remote.pem -b
+
+==============================================
+
+What is Playbook?
+==========================
+	Collection of Play.
+	Yaml
+
+What is Play?
+	Consisit of multple YAML Sections such as....
+	https://www.devopsschool.com/blog/anatomy-of-ansible-play-defined/
+	
+	hosts:	Would contain - Localhost or group of the inventory.
+	tasks:
+
+------------IGNORE----------------------
+	hosts:
+	tasks:
+	vars:
+	roles:
+	handlers:
+----------------------------------
+
+- hosts;
+  tasks:
+	task1: module and its param
+	task2: module and its param
+	task3: module and its param
+	task4: module and its param
+	task5: module and its param
+
+- hosts;
+  tasks:
+	task1: module and its param
+	task2: module and its param
+	task3: module and its param
+	task4: module and its param
+	task5: module and its param
+- hosts;
+  tasks:
+	task1: module and its param
+	task2: module and its param
+	task3: module and its param
+	task4: module and its param
+	task5: module and its param
+
+-------------------------------------------------
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd state=present
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="index.html"
+...
+
+$ ansible-playbook -i inventory play1.yaml
+
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd state=present
+  - name: start the httpd service
+    service: name=httpd state=started
+...
+
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="index.html"
+...
+
+
+master.yaml
+
+- include 1.yaml
+  when: ansible_os_family == "RedHat"
+- include 2.yaml
+  when: ansible_os_family == "Debian"
+
+$ ansible-playbook -i inventory master.yaml
+
+
+
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd state=present
+  - name: start the httpd service
+    service: name=httpd state=started
+  - include: add-tasks.yaml
+...
+
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="index.html"
+===================================================
+===================================================
+TROUBLESHOOTING
+=================================
+- Syntax Issues
+ansible-playbook -i inventory --syntax-check main.yaml
+
+- Dry Run
+ansible-playbook -i inventory --check main.yaml
+
+- Debugging 
+ansible-playbook -i inventory main.yaml
+ansible-playbook -i inventory main.yaml -v
+ansible-playbook -i inventory main.yaml -vv
+ansible-playbook -i inventory main.yaml -vvv
+ansible-playbook -i inventory main.yaml -vvvv
+ansible-playbook -i inventory main.yaml -vvvvv
+ansible-playbook -i inventory main.yaml -vvvvvv
+
+- Logging
+in ansible.cfg
+===================================================
+===================================================
+Variables with Playbook
+https://www.devopsschool.com/tutorial/ansible/variables/index.html
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd state=present
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="index.html"
+...
+
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars: 
+    myname: "rajeshkumar in playbook"
+    package: httpd
+  vars_prompt:
+   - name: "Version"
+     prompt: "Which version Do you want to install?"
+     private: false
+  vars_files:
+   - vars.yaml
+    
+
+  tasks:
+  - name: Install the httpd apps
+    yum: name={{ item }} state=present
+    with_items:
+      - git
+      - ntp
+      - vim
+      - httpd
+    ignore_errors: yes
+    when: ansible_os_family == "RedHat"
+  - name: start the httpd service
+    service: name={{ package }} state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="index.html"
+  - name: Ansible prompt example.
+    debug:
+      msg: "My name is {{ myname }}"
+  - name: Ansible prompt example.
+    debug:
+      msg: "My version is {{ Version }}"
+  - name: Ansible prompt example.
+    debug:
+      msg: "My age is {{ age}}"
+  - name: include default step variables
+    include_vars: task-var.yml
+  - name: Ansible prompt example.
+    debug:
+      msg: "My city is {{ city }}"
+...
+
+Conditioning with Playbook
+================================================
+Fact Module - setup - Give you system info.
+https://www.devopsschool.com/tutorial/ansible/ansible-conditional-programming-playbooks.html
+
+
+Looping
+https://www.devopsschool.com/tutorial/ansible/ansible-looping-programming-playbooks.html
+
+
+======================================================
+======================================================
+Handlers
+============================
+- Special TASK. RUN ONLY and ONLY When...	
+	- You call using notify.
+	- Calling task must be having changed:true.
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd state=present
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="index.html"
+    notify:
+     - handlers restart the httpd service
+  - name: start the httpd service
+    service: name=httpd state=started
+
+  handlers:
+  - name: handlers restart the httpd service
+    service: name=httpd state=restarted
+
+...
+======================================================
+template
+-----------------------
+======================================================
+- fileext - .j2
+- use template module.
+
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars: 
+    myname: "rajeshkumar in playbook"
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd state=present
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="index.html"
+    notify:
+     - handlers restart the httpd service
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: var example
+    debug:
+      msg: "My name is {{ myname }}"
+  - name: Template a file
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index.html
+
+
+  handlers:
+  - name: handlers restart the httpd service
+    service: name=httpd state=restarted
+
+...
+
+
+
+======================================================
+Inventory Variables
+-----------------------
+======================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ERROR Handling using BLOCK
+===========================
+try 
+	task 1
+	task 2
+	task 3
+catch
+	redo from task 1
+	redo from task 2
+	redo from task 3
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_blocks.html#block-error-handling
+
+
+
+
 
 
 
@@ -298,6 +705,17 @@ Ansible will append these arguments to the command line when trying to connect t
 
 ===================================================
 ===================================================
+ACS
+15.206.172.13
+
+Location - /root/DevOps-OnMob-June-2020/
+
+ARS
+13.126.16.201
+13.235.19.248
+
+User name - ec2-user
+PEM - COPY FroM /root/DevOps-OnMob-June-2020/rajeshkumar/remote.pem
 
 
 
