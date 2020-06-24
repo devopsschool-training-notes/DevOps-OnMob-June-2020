@@ -716,6 +716,80 @@ ARS
 
 User name - ec2-user
 PEM - COPY FroM /root/DevOps-OnMob-June-2020/rajeshkumar/remote.pem
+================================================================================
+================================================================================
+What is role?
+--------------------
+Managing of following
+=================================
+ - So many tasks
+ - So many vars
+ - So many template file
+ - So many files - script - reference - package
+ - So many handlers
+===============================
+	For What?
+	Difficult to share?
+	Difficult to extend?
+	Difficult to org
+	Difficult to debug?
+======================================
+	role
+
+	its a dir structure to manage
+ - So many tasks
+ - So many vars
+ - So many template file
+ - So many files - script - reference - package
+ - So many handlers
+
+ ansible-galaxy init web
+[root@ip-172-31-20-254 roles]# tree
+.
+└── web
+    ├── defaults		# for default vars
+    │   └── main.yml
+    ├── files			# for files
+    ├── handlers		# for handler tasks
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks			# for main tasks
+    │   └── main.yml
+    ├── templates		# for templates
+    ├── tests
+    │   ├── inventory
+    │   └── test.yml
+    └── vars			# for user specific vars
+        └── main.yml			
+
+
+
+
+
+
+site.yaml
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  roles:
+    - web
+========================
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
