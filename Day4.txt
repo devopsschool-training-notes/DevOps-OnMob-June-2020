@@ -1,0 +1,133 @@
+jenkins | Docker
+======================
+========================================
+
+What is jenkins?
+========================
+	CI tool.
+	Free
+	Open Source
+	Written in Java
+	Each feature - Based on Plugins [ by Community ]
+	Release
+	- Cloudbees - Paid
+	Hudson ==> Jenkins
+	Variant 
+	- Jenkins
+	- Jenkins Blue Ocean 
+	- Jenkins X
+
+What is CI?
+=====================
+	Continous Integ
+		- Continous 
+		- Integ
+
+Auto Build + Auto Test
+========================
+     IMM Feedback
+
+Code - > Analyze -> Build -> UT -> Package -> Archive -> Deploy2QA -> AT ->  CC 
+-------------------------------------------------------------------------------
+Git  -> SonaQube -> Gradle -> Junit -> Jar -> Artifactory -> Ansible -> Sel -> Jacoco
+=====================================================================================
+				Jenkins
+					Integation using plugins
+					Scheduling
+					Notification(IMM Feedback)
+						Email
+						Whatsapp
+						Slack
+						Zabbar
+					Dashboard
+					Pipeline
+=====================================================
+Other tools ->
+Bamboo - UBuild - gitlabci - teamcity - Cicircle
+============================================
+How to install Jenkins?
+	- SR  - JAVA
+	- HR  - 
+https://www.devopsschool.com/tutorial/jenkins/jenkins-installation-and-configuration.html
+==================================
+Demo
+Lab
+
+13.233.250.128
+===============================
+Jenkins Architecutre - How it works?
+========================
+https://www.devopsschool.com/blog/jenkins-architecture-explained/
+==================================================================================
+==================================================================================
+http://13.233.250.128:8080/
+rajesh
+rajesh123
+===============================================
+Secret Formula
+--------------------------------------
+What is your technology?
+	JAVA - DOTNET - PERl - PYTHON - RUBy
+	Version???
+
+Where is the source Code and How to access it?
+	Git
+	Access - Branch
+What is your Builder?
+	Maven - Gradle - 
+	POM	build.gradle build.xml default.msbuild
+	GOAL	task		target  target
+
+How often you want build to be trigger?
+
+How you want feedback?
+	
+
+What is your technology?
+	JAVA - JDK - 8
+Where is the source Code and How to access it?
+	github - free - open 
+https://github.com/scmgalaxy/helloworld-java-maven
+https://github.com/devopsschool-demo-labs-projects/gradle-hello-world-Jenkinsfile
+https://github.com/devopsschool-demo-labs-projects/java-hello-world-with-gradle
+https://github.com/devopsschool-demo-labs-projects/gradle-hello-world
+https://github.com/devopsschool-demo-labs-projects/gradle-artifactory-upload-example
+
+How often you want build to be trigger?
+	daily
+
+
+What is your Builder?
+	maven 		- gradle
+	pom.xml		build
+	compile
+	package
+	test
+	
+
+How you want feedback?
+	rajesh@scmgalaxy.com
+
+
+http://13.233.250.128:8080/job/Package/2/artifact/target/yoodle-5.0.0.jar
+==============================================================
+http://13.233.250.128:8080/
+rajesh
+rajesh123
+
+Assignment
+
+Job1  - Ant Project		- build.xml 	- package
+Job2  - Maven Project		- pom.xml 	- package
+Job3 - Gradle Project 		- build.gradle 	- build
+=========================================================
+Ant  - https://github.com/scmgalaxy/helloworld-java-ant
+Maven - https://github.com/scmgalaxy/helloworld-java-maven
+Gradle -  https://github.com/devopsschool-demo-labs-projects/gradle-hello-world
+
+
+
+
+
+
+
