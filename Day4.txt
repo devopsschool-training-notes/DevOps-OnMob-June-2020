@@ -32,7 +32,7 @@ Code - > Analyze -> Build -> UT -> Package -> Archive -> Deploy2QA -> AT ->  CC
 Git  -> SonaQube -> Gradle -> Junit -> Jar -> Artifactory -> Ansible -> Sel -> Jacoco
 =====================================================================================
 				Jenkins
-					Integation using plugins
+					Integation using plugins	DONE
 					Scheduling
 					Notification(IMM Feedback)
 						Email
@@ -124,6 +124,224 @@ Job3 - Gradle Project 		- build.gradle 	- build
 Ant  - https://github.com/scmgalaxy/helloworld-java-ant
 Maven - https://github.com/scmgalaxy/helloworld-java-maven
 Gradle -  https://github.com/devopsschool-demo-labs-projects/gradle-hello-world
+
+============================================================================================
+Integation using plugins
+==============================
+Jenkins -> DONE
+Jenkins -> Junit 
+Jenkins -> SonarQube
+======================================
+Rules of Integrting Any tools using plugins?
+--------------------------------------
+Step 1 - Know a Architecture of tools which you are tryng to integ	DONE
+Step 2 - Install Plugins						DONE
+Step 3 - Configure plugins
+			Server  ---
+			http://13.232.4.159:9000/
+			admin/admin
+
+			Scanner - Tool
+
+			Src
+			https://github.com/devopsschool-demo-labs-projects/java-sonarqube-helloworld-src
+Step 4 - Use Plugins in job at appropriate loc.
+======================================
+http://13.233.250.128:8080/view/raj/job/Package/lastSuccessfulBuild/artifact/target/yoodle-5.0.0.jar
+
+s1  - Set a inventory with acces 
+S2 - Playbook
+		download a package from url to ars
+		start a service
+s3 - to github
+s4 - clone it using jenkins - https://github.com/devopsschool-demo-labs-projects/ansible-hello-world-role
+s5 - run it 
+		ansible-playbook -i inventory play.yaml
+		ansible -m
+====================================================
+Scheduling
+=============================================================================
+I want to trigger a job.
+	- AT FIXED TIME ==== Build periodically			ONE STEP		
+	- AT FIXED TIME but ONLY SCM CHANges - Poll SCM		ONE STEP
+	- If ONE other jobs is triggered. - Build after other projects are built	ONE STEP
+	- script- ide - SOME OTHER TOOL - Trigger builds remotely (e.g., from scripts)
+	- push HAPPENDED IN gITHUB.	= GitHub hook trigger for GITScm polling
+	- ANOTHER from this job  = Post-build Actions		ONE STEP
+https://www.devopsschool.com/blog/how-to-schedule-and-trigger-a-jenkins-job-automatically/
+===============
+Notification
+========================================================
+Email - 
+CHAT
+WHATSAP
+SMS
+===============
+Dashboard
+Pipeline using Coding.
+========================
+groovy
+	jenkinsfile
+	https://github.com/scmgalaxy/helloworld-java-maven
+
+
+=============
+Docker
+13.232.4.159
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+$ docker run -d --name sonarqube -p 9000:9000 sonarqube
+=============================================================================================
+=============================================================================================
+Q1. Jenkins Node mgmt
+=============================
+Avoid waste
+	- Work with Executors
+	- Use Concurrencey
+	- 1 - 10 
+
+	Nodes
+		ANY 
+			Where JAVA can run
+13.232.4.159
+ec2-user
+Q2. CD
+	Continous Delivery
+	Continous Deployment
+				Production
+					Existing - Ansible
+					Conainer - K8s
+				Canary Deployment 
+
+
+site.yaml
+roles/ - tis would container all play
+production-most-90%  
+		inventory
+		group_vars	
+			NEw Release
+		host_vars
+production-less 10% 
+		inventory
+		group_vars
+			NEw Release
+		host_vars	
+Q3. 
+package ---in -- repo
+=====================
+		Stddy
+
+Which is access with what????
+What tool max feature....
+	YOUr server ---> Host --> Some macine
+			 pull   -----> SOme machine (playbook)
+=============================================================================================
+=============================================================================================
+What is Docker?
+==============================
+	Container mgmt tool
+
+What is Container?
+========================
+
+
+Filesystem
+================
+	BOOTFS - KERNAL which gets loaded in RAM. - CANT SEE IT
+	ROOTFS - OS + Tools
+	USERFS - 
+	APP FS
+
+
+	Each container gets
+			ROoTFS	ubuntu
+				USERFS   tomcat
+					APPFS	tomcat
+
+			==========================
+			Image
+================================================================
+What is a architecture of Docker?
+
+Human -> docker Clinet -------REST ------> Docker Deamon ---> ContainerD ---> Kernal --> Namepace -
+												PMAP
+												NET
+												USER
+												MNT
+								---------------RUNC ---------------					
+
+
+	================Docker ENgine=========================
+============
+
+=============
+Docker
+13.232.4.159
+ec2-user
+Key
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+============================================================
+Docker Workflow
+--------------------------------
+
+
+Container Workflow
+===============================
+Create -> start  - stop - restart -> pause - unpause - kill -> delete
+
+Container --- Image - Docker Image --> Docker Repo...
+	-----------------------------
+	ROOTFS - USER FS - AP FS.
+	ROOFTS	X USER -  SONARQUBE
+
+
+17  clear
+   18  clear
+   19  docker ps
+   20  dockerimages
+   21  docker images
+   22  docker create jenkins
+   23  clear
+   24  docker images
+   25  docker ps
+   26  docker ps -a
+   27  docker start 0695f79a8e99
+   28  docker ps -a
+   29  docker stop 0695f79a8e99
+   30  docker ps -a
+   31  docker restart 0695f79a8e99
+   32  docker ps -a
+   33  docker pause 0695f79a8e99
+   34  docker ps -a
+   35  docker unpause 0695f79a8e99
+   36  docker ps -a
+   37  docker kill 0695f79a8e99
+   38  docker ps -a
+   39  docker inspect 0695f79a8e99
+   40  dockerps -a
+   41  docker ps -a
+   42  docker start 0695f79a8e99
+   43  docker inspect 0695f79a8e99
+   44  http//172.17.0.3:8080
+   45  curl http//172.17.0.3:8080
+   46  curl http://172.17.0.3:8080
+   47  docker kill 0695f79a8e99
+   48  docker rm 0695f79a8e99
+   49  hsitory
+   50  history
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
