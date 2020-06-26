@@ -1,0 +1,307 @@
+Qa
+===========================
+Docker image  - STATIC ---> 1 SEC - REMOVE - RECREATE
+	
+	DYNMIC - DB - CONFIG - META
+
+Data Architecture
+====================
+SQL Engine	- STATIC
+Data DIR	- Dymantic
+================================================
+Container
+Dev-IDE-CODe-Code-UT-CreateaImageDock	--> QA 		--> PROD
+	             ----------------	     1SEC		1SEC	
+			15-20
+			1mins
+=================================================
+QA - 
+	Manual in Existing -- JAR --> STOP - START ---->RUNTIME TESTING
+	--------------------------------------------------------
+	DOCKER - COMPLETE RUN TIME  - in 1SEC  - RUNNING - TESTING
+			---------------------------------------------
+			EXISTING APP - REPLACED
+			ContainerV1 ---> Containerv2
+			NewImagev1  	 NewImagev2
+	================================================
+
+
+Platform - Containers - Docker
+Container Orchestration	Kubernetes
+Kubernetes Package Managment	Helm
+Services mesh Data planes	Envoy
+Services mesh Control Planes	Istio
+Service Discovery	Consul
+
+https://www.devopsschool.com/blog/understanding-the-tools-sets-in-kubernetes-ecosystem/
+====================================================================
+Current System - Architect
+new System - Docker - Kuber
+=================================================================================================
+=================================================================================================
+
+
+
+Componets of Docker
+========================
+Docker Engine --- A PLATFORM 
+		Docker Clinet --> Docker Deamon
+		Which manages ur container.
+Docker Registry
+		A place you get images
+		PUB
+			hub.docker.com
+		PVT 
+			artifactory | nexus
+
+VM Image		- BOOTFS + ROOTFS + USER FS | APP FS
+Docker Image		- ROOTFS + USER FS | APP FS
+===========================================================		
+
+Docker Container	 - A Runtime env For APP
+		 	 - The moment u run Image - You get a container
+			 - One Image - can be host multiple container
+			  -Every containers
+				- One use space
+				- one network
+				- one pmap
+				- one mount
+=====================================================================
+
+Container Workflow
+===============================
+Create -> start  - stop - restart -> pause - unpause - kill -> delete
+
+Container --- Image - Docker Image --> Docker Repo...
+	-----------------------------
+	ROOTFS - USER FS - AP FS.
+	ROOTFS	X USER -  SONARQUBE
+===================================
+jenkins
+
+Create -> start  - stop - restart -> pause - unpause - kill -> delete
+
+
+
+Create -> start --> Become
+==========================
+       run
+
+Create -> start --> Become
+==========================
+ run -d
+============================================================
+How to use container?
+- Browsers
+ 74  docker ps
+   75  docker inspect 3dda837d5c76
+   76  clear
+   77  curl http://172.17.0.2:8080
+
+- Go inside 
+   - exec way
+   - attach 
+		pid 1 /bin/tini
+========================================
+docker run -d -p 8080:8080 jenkins
+http://13.232.4.159:8080/login?from=%2F
+=============================================================
+How to develop a Image
+============================
+Have a rootfs - ubuntu	YES
+install git
+install apache
+========================
+		Image
+
+Manual
+
+Auto
+
+FROM ubuntu
+MAINTAINER RAJESH KUMAR
+RUN apt-get update
+RUN apt-get install git -y
+#RUN apt-get install apache2 -y
+RUN apt-get install systemctl -y
+#RUN systemctl enabled apache2
+
+=======================================================================================
+=======================================================================================
+What is ELK?
+========================
+	ElasticSearch
+		- Index - Store - Search - Ranked - List
+		What data?  - Anything [ Text based ] 
+		Use case - 
+			To develop local search engine - 
+			To mine a Machine Log
+				- Server log
+				- Event log
+				- App log
+				- Network log
+		Powered by Apache Lucene
+			ES - DSL Lang + TF/IDF
+				-----------
+				So many tech....
+		Uses "Inverted  index" to index a log.
+
+		------------------------------------------
+		Alogorith - TF/IDF Written by ElasticSearch 
+				Can you modify ==== YES
+	Log stash
+		Which has a parser - so many.
+		Stash a log and store it in ES
+		
+	
+	Kibana
+		Personal Search Engine Dashboard
+		Dashboard
+		 	- Reports			
+			- Store Your Searches
+			- Alerts
+			- Setup a monitor
+		Make a API call to ES.
+
+	Beats
+		A tool which can read a log from DIFF - DIFF - DIFF source.
+		So many beats
+
+=======================================================================
+Architecture of ELK.
+===============================================================
+How to setup ELK setup??
+==============================
+  18  curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-linux-x86_64.tar.gz
+   19  clear
+   20  ls
+   21  tar -xvf elasticsearch-7.0.1-linux-x86_64.tar.gz
+   22  clear
+   23  ls
+   24  cd elasticsearch-7.0.1
+   25  ./elasticsearch -d -p pid
+   26  clear
+   27  ls
+   28  cd bin/
+   29  ls
+   30  ./elasticsearch -d -p pid
+   31  ps -eaf | grep elasticsearch
+   32  clear
+   33  ls
+   34  cd ..
+   35  ls
+   36  clear
+   37  ls
+   38  curl http://localhost:9200
+
+==============================================
+Manually - 
+	CRUD
+	-------
+	Create
+		index
+			document
+	READ
+		index
+			document
+	Update
+			document
+		
+	Delete 
+
+
+
+curl -XPUT 'localhost:9200/products/mobiles/1?pretty' -H 'Content-Type: application/json' -d'
+{
+  "name": "iPhone 7",
+  "camera": "12MP",
+  "storage": "256GB",
+  "display": "4.7inch",
+  "battery": "1,960mAh",
+  "reviews": ["Incredibly happy after having used it for one week", "Best iPhone so far", "Very expensive, stick to Android"]
+}
+'
+
+curl -XGET 'localhost:9200/products/mobiles/1'
+
+
+
+curl -XPOST 'localhost:9200/products/mobiles/1/_update?pretty' -H 'Content-Type: application/json' -d'
+{
+  "doc": {
+     "reviews": ["Best Android phone", "I love it!", "Samsung is my favorite"],
+     "texture": "smooth"
+  }
+}
+'
+
+
+
+curl -XDELETE 'localhost:9200/products/mobiles/1?pretty'
+curl -XGET 'localhost:9200/products/mobiles/1'
+curl -XGET 'localhost:9200/_cat/indices?v&pretty'
+curl -XDELETE 'localhost:9200/products?pretty'
+
+=======================================================
+
+The Logstash pipeline can index the data into an Elasticsearch cluster. Edit the first-pipeline.conf file and replace the entire output section with the following text:
+
+output {
+    elasticsearch {
+        hosts => [ "localhost:9200" ]
+    }
+}
+
+bin/logstash -f first-pipeline.conf --config.test_and_exit
+
+==============================================================
+
+What is Prom?
+	Storage Metrices of Infra.
+	- Timeseries
+	PUSH - PULL 
+	Default pull based.
+
+Agent 
+	Exporter - So many - https://prometheus.io/docs/instrumenting/exporters/ 
+	Client Lib 
+		https://prometheus.io/docs/instrumenting/clientlibs/
+
+
+==========================================================================
+==========================================================================
+Monitoring - DEAD
+---------------
+
+OBSERVABILIty
+		Monitoring + Obserb + Action
+			 -------------
+				K8s
+
+============================
+Monitoring
+	Log	- Event 
+	Infra	- Metrices
+	Perf	- Transactions
+	========================
+	APP IS RUNNING - PS
+	APP IS BEHAVING  - Transactions - RESPONSE 200 - 404
+				LOG - 
+				INOF
+				WARNING
+				DEBUG
+				ERROR
+					
+==========================================================================
+==========================================================================
+http://13.232.4.159:3000/
+http://13.232.4.159:5601/app/kibana
+==========================================
+
+
+
+
+
+
+
+	
